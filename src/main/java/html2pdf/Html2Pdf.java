@@ -17,11 +17,11 @@ import java.net.URLConnection;
  */
 public class Html2Pdf {
 
-    public static  byte[] readInputStream(InputStream inputStream) throws IOException {
+    public static byte[] readInputStream(InputStream inputStream) throws IOException {
         byte[] buffer = new byte[1024];
         int len = 0;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        while((len = inputStream.read(buffer)) != -1) {
+        while ((len = inputStream.read(buffer)) != -1) {
             bos.write(buffer, 0, len);
         }
 
@@ -29,17 +29,17 @@ public class Html2Pdf {
         return bos.toByteArray();
     }
 
-    public static InputStream html2Pdf(String url0){
-        InputStream inputStream=null;
+    public static InputStream html2Pdf(String url0) {
+        InputStream inputStream = null;
         try {
             URL url = new URL(url0);
             URLConnection conn = url.openConnection();//获得UrlConnection 连接对象
             inputStream = conn.getInputStream();
             byte[] getData = readInputStream(inputStream);     //获得网站的二进制数据
             String data = new String(getData, "gb2312");
-            inputStream=new ByteArrayInputStream(data.getBytes("UTF-8"));
+            inputStream = new ByteArrayInputStream(data.getBytes("UTF-8"));
             System.out.println(data);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return inputStream;
@@ -56,13 +56,13 @@ public class Html2Pdf {
         // step 4
         BaseFont baseFontChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
         Font font = new Font(baseFontChinese);
-        document.add(new Paragraph("解决中文问题了！",font));
+        document.add(new Paragraph("解决中文问题了！", font));
 
-        XMLWorkerHelper.getInstance().parseXHtml(writer, document,html2Pdf(url));
+        XMLWorkerHelper.getInstance().parseXHtml(writer, document, html2Pdf(url));
         //step 5
         document.close();
 
-        System.out.println( "PDF Created!" );
+        System.out.println("PDF Created!");
         return true;
     }
 }

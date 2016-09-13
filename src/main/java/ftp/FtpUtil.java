@@ -1,5 +1,9 @@
 package ftp;
 
+/**
+ * Created by sw on 2016/9/13.
+ */
+
 import exception.BusinessException;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.ftp.FTPClient;
@@ -204,27 +208,6 @@ public class FtpUtil {
 
     private static boolean isWindows() {
         return OS.indexOf("windows") >= 0;
-    }
-
-
-    public String convertStreamToString(InputStream is) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return sb.toString();
     }
 }
 

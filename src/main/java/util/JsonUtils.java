@@ -14,9 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class JsonUtils {
     public JsonUtils() {
