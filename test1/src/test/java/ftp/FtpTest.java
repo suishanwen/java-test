@@ -3,8 +3,6 @@ package ftp;
 import util.IoUtil;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 
 /**
  * Created by sw on 2016/9/13.

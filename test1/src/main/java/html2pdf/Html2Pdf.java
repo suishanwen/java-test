@@ -3,11 +3,14 @@ package html2pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.tool.xml.XMLWorkerHelper;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -56,13 +59,41 @@ public class Html2Pdf {
         // step 4
         BaseFont baseFontChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
         Font font = new Font(baseFontChinese);
-        document.add(new Paragraph("解决中文问题了！", font));
+//        document.add(new Paragraph("解决中文问题了！", font));
+        Image image = Image.getInstance("E:/P101076");
+        image.setAlignment(Image.ALIGN_CENTER);
+        System.out.println(image.getScaledWidth());
+        System.out.println(image.getScaledHeight());
 
-        XMLWorkerHelper.getInstance().parseXHtml(writer, document, html2Pdf(url));
+        image.scaleAbsolute(505,775);//自定义大小
+
+        document.add(image);
+//        XMLWorkerHelper.getInstance().parseXHtml(writer, document, html2Pdf(url));
         //step 5
         document.close();
 
         System.out.println("PDF Created!");
         return true;
+    }
+
+    public static void create()
+    {
+        try {
+            Document document =new Document();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PdfWriter.getInstance(document,baos );
+            document.open();
+
+            document.add(new Paragraph("Hello World"));
+
+            document.close();
+
+            byte[] content = baos.toByteArray();
+
+        } catch (Exception e) {
+// TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 }
