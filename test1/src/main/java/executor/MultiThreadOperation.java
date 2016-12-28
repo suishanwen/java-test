@@ -22,6 +22,7 @@ public class MultiThreadOperation implements Callable {
 
     public InputStream call() throws Exception {
         FtpUtil ftpUtil = new FtpUtil();
+        ftpUtil.getConn("ftp://meddoc:meddoc@192.168.1.63:2121/FtpFile");
         return IoUtil.ByteArray2InputStream(ftpUtil.fileGet(path, name).toByteArray());
     }
 }

@@ -20,7 +20,7 @@ import java.util.concurrent.Future;
 public class MultiThreadTest {
     public static void main(String[] args) {
         ExecutorService pool = Executors.newFixedThreadPool(5);
-        Map<String, Future<InputStream>> tempMap = new LinkedHashMap<String, Future<InputStream>>();
+        Map<String, Future<InputStream>> tempMap = new LinkedHashMap<>();
         Callable<InputStream> callable1 = new MultiThreadOperation("/Inp/DOCTOR_MR_EXTERNAL_DATA/20151200002", "20160729000001");
         tempMap.put("file1",pool.submit(callable1));
         Callable<InputStream> callable2 = new MultiThreadOperation("/Inp/DOCTOR_MR_EXTERNAL_DATA/20151200002", "20160729000001");
