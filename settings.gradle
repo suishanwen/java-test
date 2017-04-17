@@ -1,1 +1,3 @@
-include 'test1','test2'
+include 'test1','test2','spring-rest'
+
+
